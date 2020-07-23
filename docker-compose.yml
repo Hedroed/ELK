@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.5.1
+    container_name: elasticsearch
+    environment:
+      - "ES_JAVA_OPTS=-Xms4g -Xmx4g"
+    volumes:
+      - ./elasticsearch/data:/usr/share/elasticsearch/data
+      - ./config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ./elasticsearch/backups:/usr/share/elasticsearch/backups
+    ports:
+      - "9200:9200"
+    networks:
+      - elk
+
+  # logstash:
+  #   image: docker.elastic.co/logstash/logstash:7.5.1
+  #   container_name: logstash
+  #   volumes:
+  #      - ./config/logstash/:/conf/
+  #      - ./logs:/logs
+  #   ports:
+  #     - "5000:5000"
+  #   environment:
+  #     - "LS_JAVA_OPTS=-Xms256m -Xmx1g"
+  #     - "TZ=Europe/Paris"
+  #   networks:
+  #     - elk
+  #   command: logstash -r -f /conf/logstash.conf
+  #   depends_on:
+  #     - elasticsearch
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.5.1
+    container_name: kibana
+    volumes:
+      - ./config/kibana.yml:/usr/share/kibana/config/kibana.yml
+      - ./kibana-plugins:/usr/share/kibana/plugins
+    ports:
+      - "5601:5601"
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
+
+networks:
+  elk:
+    driver: bridge

@@ -1,0 +1,10 @@
+elasticsearch/data/*
+!elasticsearch/data/.gitkeep
+
+elasticsearch/backups/*
+!elasticsearch/backups/.gitkeep
+
+kibana-plugins/*
+!kibana-plugins/.gitkeep
+
+passwords.txt
