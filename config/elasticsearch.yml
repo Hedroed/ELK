@@ -5,4 +5,4 @@ path.repo: ["/usr/share/elasticsearch/backups"]
 
 discovery.type: "single-node"
 
-xpack.security.enabled: true
+xpack.security.enabled: false

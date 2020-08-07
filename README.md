@@ -2,9 +2,9 @@ ELK
 ===
 
 Docker-compose :
-- Elasticsearch:7
-- Logstash:7
-- Kibana:7
+- Elasticsearch:7.8
+- Logstash:7.8
+- Kibana:7.8
 
 
 ## Install
@@ -67,4 +67,10 @@ docker-compose up -d elasticsearch
 docker-compose exec elasticsearch bin/elasticsearch-setup-passwords auto
 ```
 
+Then change
+```
+elasticsearch.password: "changeme"
+```
+in
+**config/kibana.yml**
 

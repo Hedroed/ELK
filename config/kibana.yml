@@ -4,7 +4,7 @@
 server.name: kibana
 server.host: "0"
 elasticsearch.hosts: "http://elasticsearch:9200"
-elasticsearch.password: "Gc5xBH7yFzhIzLZrFir2"
+elasticsearch.password: "changeme"
 elasticsearch.username: "elastic"
 
-xpack.security.enabled: true
+xpack.security.enabled: false
